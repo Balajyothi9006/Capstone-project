@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div class="dashboard-container">
+  <div class="dashboard-title">Admin Dashboard</div>
+
+  <div class="row g-4">
+    <!-- Manage Buses -->
+    <div class="col-md-4">
+      <div class="card p-3">
+        <div class="card-body">
+          <div class="card-title">🚌 Manage Buses</div>
+          <p class="card-text">Add or delete buses.</p>
+          <a th:href="@{/admin/buses}" class="btn btn-primary">Go</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Users -->
+    <div class="col-md-4">
+      <div class="card p-3">
+        <div class="card-body">
+          <div class="card-title">👥 Manage Users</div>
+          <p class="card-text">View registered users and their activity.</p>
+          <a th:href="@{/admin/users}" class="btn btn-primary">Go</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- View Feedback -->
+    <div class="col-md-4">
+      <div class="card p-3">
+        <div class="card-body">
+          <div class="card-title">View Feedback</div>
+          <p class="card-text">Read and manage user feedback.</p>
+          <a th:href="@{/admin/feedback}" class="btn btn-primary">Go</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body> <style>
+  body {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 40px;
+  }
+
+  .dashboard-container {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 1000px;
+    margin: auto;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  .dashboard-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #333;
+  }
+
+  .card {
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #4e54c8;
+  }
+
+  .btn-primary {
+    background-color: #4e54c8;
+    border: none;
+    padding: 10px 25px;
+    margin-top: 15px;
+    font-weight: 600;
+  }
+
+  .btn-primary:hover {
+    background-color: #3b3fc4;
+  }
+
+  @keyframes fadeIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+</style>
+</html>

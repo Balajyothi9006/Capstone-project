@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmed</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <style>
+        body {
+          background: linear-gradient(135deg, #4e54c8, #8f94fb);
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: 'Segoe UI', sans-serif;
+        }
+
+        .search-card {
+          background: #fff;
+          border-radius: 16px;
+          padding: 40px;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+          width: 100%;
+          max-width: 550px;
+          animation: fadeIn 0.5s ease-in;
+          text-align: center;
+        }
+
+        @keyframes fadeIn {
+          from { transform: translateY(20px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+
+        h3 {
+          color: #28a745;
+          font-weight: 700;
+        }
+
+        p {
+          font-size: 18px;
+          margin-top: 20px;
+          color: #333;
+        }
+
+        .btn-primary {
+          margin-top: 30px;
+          background-color: #4e54c8;
+          border: none;
+          font-weight: 600;
+          padding: 10px 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="search-card">
+    <input type="hidden" name="userId" th:value="${userId}" />
+    <h3>Booking Successful!</h3>
+    <p>Your seat has been successfully booked.</p>
+    <a th:href="@{'/profile/' + ${userId}}" class="btn btn-primary">Go to Profile</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Buses</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+</head>
+<body>
+<input type="hidden" name="userId" th:value="${userId}" />
+<h2 class="text-white mb-4">Available Buses</h2>
+
+<div th:each="bus : ${buses}" class="bus-card">
+
+    <div class="bus-header" th:text="${bus.name}">Bus Name</div>
+    <div class="bus-details">
+        <span><strong>Source:</strong> <span th:text="${bus.source}">Source</span></span>
+        <span><strong>Destination:</strong> <span th:text="${bus.destination}">Destination</span></span>
+        <span><strong>Date:</strong> <span th:text="${bus.travelDate}">Date</span></span>
+        <span><strong>Departure:</strong> <span th:text="${bus.departureTime}">Dep</span></span>
+        <span><strong>Arrival:</strong> <span th:text="${bus.arrivalTime}">Arr</span></span>
+        <span><strong>Seats:</strong> <span th:text="${bus.totalSeats}">Seats</span></span>
+        <span><strong>Price/Seat:</strong> ₹<span th:text="${bus.pricePerSeat}">Price</span></span>
+    </div>
+    <div class="mt-3">
+        <a th:href="@{'/bus/' + ${bus.id} + '/' + ${userId} + '/select'}" class="btn btn-view">Book Now</a>
+    </div>
+</div>
+
+</body>
+<style>
+    body {
+        background: linear-gradient(135deg, #4e54c8, #8f94fb);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        padding-top: 50px;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .bus-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        margin-bottom: 20px;
+        width: 90%;
+        max-width: 900px;
+        animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .bus-header {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #4e54c8;
+        margin-bottom: 15px;
+    }
+
+    .bus-details span {
+        display: inline-block;
+        margin-right: 20px;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .btn-view {
+        background-color: #4e54c8;
+        color: #fff;
+        font-weight: 600;
+        padding: 8px 20px;
+        border-radius: 10px;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-view:hover {
+        background-color: #3b3fc4;
+    }
+</style>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Booking</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <style>
+        body {
+          background: linear-gradient(135deg, #4e54c8, #8f94fb);
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .booking-form {
+          background: #fff;
+          border-radius: 16px;
+          padding: 40px;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+          width: 100%;
+          max-width: 600px;
+        }
+
+        .form-label {
+          font-weight: 500;
+        }
+
+        .btn-book {
+          background-color: #4e54c8;
+          color: white;
+          font-weight: 600;
+        }
+
+        .form-control[readonly] {
+          background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="booking-form">
+    <h3 class="text-center mb-4">Booking Details</h3>
+
+    <form th:action="@{/confirm-booking}" method="post" th:object="${booking}">
+        <!-- Hidden fields -->
+        <input type="hidden" name="userId" th:value="${userId}" />
+        <input type="hidden" name="busId" th:value="${busId}" />
+
+        <input type="hidden" id="pricePerSeat" th:value="${pricePerSeat}" />
+
+        <!-- Seat Count -->
+        <div class="mb-3">
+            <label class="form-label">Seat Count</label>
+            <input type="number" name="seatCount" id="seatCount" min="1" class="form-control" value="1" required />
+        </div>
+
+        <!-- Payment Option -->
+        <div class="mb-3">
+            <label class="form-label">Payment Option</label>
+            <select name="paymentOption" class="form-select" required>
+                <option value="">-- Select Payment Option --</option>
+                <option value="UPI">UPI</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="Net Banking">Net Banking</option>
+                <option value="Cash on Arrival">Cash on Arrival</option>
+            </select>
+        </div>
+
+        <!-- Seat Preference -->
+        <div class="mb-3">
+            <label class="form-label">Seat Preference</label>
+            <select name="seatPreferences" class="form-select" required>
+                <option value="">-- Select Seat Preference --</option>
+                <option value="Window">Window</option>
+                <option value="Aisle">Aisle</option>
+                <option value="Front">Front</option>
+                <option value="Back">Back</option>
+                <option value="Middle">Middle</option>
+            </select>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-book btn-lg">Confirm Booking</button>
+        </div>
+    </form>
+</div>
+<style>
+    body {
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .search-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 550px;
+      animation: fadeIn 0.5s ease-in;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .btn {
+      padding: 10px 30px;
+      font-weight: 600;
+      margin: 10px;
+      border-radius: 10px;
+    }
+
+    .btn-primary {
+      background-color: #4e54c8;
+      border: none;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      border: none;
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Available Buses</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h2 class="mb-4 text-primary">Available Buses</h2>
+
+  <!-- Optional: Route Info -->
+  <div th:if="${fromCity != null and toCity != null}" class="alert alert-info">
+    Showing buses from <strong th:text="${fromCity}"></strong> to <strong th:text="${toCity}"></strong>
+  </div>
+
+  <!-- Bus Table -->
+  <div class="card">
+    <div class="card-header bg-primary text-white">Bus List</div>
+    <div class="card-body">
+      <table class="table table-striped table-hover">
+        <thead class="table-light">
+        <tr>
+          <th>Bus Number</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Departure</th>
+          <th>Arrival</th>
+          <th>Seats</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bus : ${buses}">
+          <td th:text="${bus.busNumber}"></td>
+          <td th:text="${bus.fromCity}"></td>
+          <td th:text="${bus.toCity}"></td>
+          <td th:text="${bus.departureTime}"></td>
+          <td th:text="${bus.arrivalTime}"></td>
+          <td th:text="${bus.seats}"></td>
+          <td>
+            <a th:href="@{'/user/book-seat/' + ${bus.id}}" class="btn btn-sm btn-success">Book</a>
+          </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(buses)}">
+          <td colspan="7" class="text-center text-muted">No buses available.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <a href="/user/search" class="btn btn-outline-secondary mt-3">Back to Search</a>
+</div>
+</body>
+<style>
+  body {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .search-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 550px;
+    animation: fadeIn 0.5s ease-in;
+    text-align: center;
+  }
+
+  @keyframes fadeIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  h1 {
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+
+  .btn {
+    padding: 10px 30px;
+    font-weight: 600;
+    margin: 10px;
+    border-radius: 10px;
+  }
+
+  .btn-primary {
+    background-color: #4e54c8;
+    border: none;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+</style>
+</html>

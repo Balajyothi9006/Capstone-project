@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Feedback</title>
+</head>
+<body>
+<h2>Feedback from Users</h2>
+<table>
+    <tr>
+        <th>User</th>
+        <th>Message</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="f : ${feedbacks}">
+        <td th:text="${f.user.name}"></td>
+        <td th:text="${f.message}"></td>
+        <td th:text="${f.date}"></td>
+    </tr>
+</table>
+</body>
+</html>
+>

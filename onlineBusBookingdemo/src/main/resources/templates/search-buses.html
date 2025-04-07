@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Buses</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div class="search-card">
+  <h3>Search Buses</h3>
+
+  <form th:action="@{buses/search}" method="post">
+    <div class="input-row mb-3">
+      <div class="form-group">
+        <input type="hidden" name="userId" th:value="${userId}" />
+        <label class="form-label">From</label>
+        <input type="text" name="fromDestination" class="form-control" placeholder="City A" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">To</label>
+        <input type="text" name="toDestination" class="form-control" placeholder="City B" required />
+      </div>
+    </div>
+
+    <div class="button-wrapper">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+</div>
+</body>
+<style>
+  body {
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+  }
+
+  .search-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 550px;
+      animation: fadeIn 0.5s ease-in;
+  }
+
+  @keyframes fadeIn {
+      from {
+          transform: translateY(20px);
+          opacity: 0;
+      }
+      to {
+          transform: translateY(0);
+          opacity: 1;
+      }
+  }
+
+  .search-card h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #333;
+  }
+
+  .form-label {
+      font-weight: 500;
+      color: #333;
+  }
+
+  .form-control {
+      border-radius: 10px;
+      padding: 10px;
+  }
+
+  .btn-primary {
+      background-color: #4e54c8;
+      border: none;
+      font-weight: 600;
+      padding: 10px 30px;
+  }
+
+  .btn-primary:hover {
+      background-color: #3b3fc4;
+  }
+
+  .input-row {
+      display: flex;
+      gap: 15px;
+  }
+
+  .input-row .form-group {
+      flex: 1;
+  }
+
+  .button-wrapper {
+      text-align: center;
+      margin-top: 30px;
+  }
+</style>
+</html>

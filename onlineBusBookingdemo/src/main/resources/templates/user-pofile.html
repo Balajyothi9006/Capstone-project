@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div class="profile-card">
+  <h3>User Profile</h3>
+
+  <!-- View Profile -->
+  <div class="section-title">👤 View Profile</div>
+  <div class="mb-3">
+    <label class="form-label">Username:</label>
+    <div th:text="${user.name}">johndoe</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email:</label>
+    <div th:text="${user.email}">john@example.com</div>
+  </div>
+
+  <!-- Edit Profile -->
+  <div class="section-title">Edit Profile</div>
+  <form th:action="@{/user/edit}" method="post">
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input type="text" name="username" class="form-control" th:value="${user.username}" required />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email id</label>
+      <input type="email" name="email" class="form-control" th:value="${user.email}" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Update Profile</button>
+  </form>
+
+  <!-- Change Password -->
+  <div class="section-title"> Change Password</div>
+  <form th:action="@{/user/change-password}" method="post">
+    <div class="mb-3">
+      <label class="form-label">Current Password</label>
+      <input type="password" name="currentPassword" class="form-control" required />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">New Password</label>
+      <input type="password" name="newPassword" class="form-control" required />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Confirm New Password</label>
+      <input type="password" name="confirmPassword" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Change Password</button>
+  </form>
+</div>
+</body>
+<style>
+  body {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+  }
+
+  .profile-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    width: 100%;
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 30px;
+    color: #4e54c8;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+  }
+
+  .form-label {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .form-control {
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .btn-primary {
+    background-color: #4e54c8;
+    border: none;
+    padding: 10px 30px;
+    margin-top: 15px;
+    font-weight: 600;
+  }
+
+  .btn-primary:hover {
+    background-color: #3b3fc4;
+  }
+
+  @keyframes fadeIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+</style>
+</html>
