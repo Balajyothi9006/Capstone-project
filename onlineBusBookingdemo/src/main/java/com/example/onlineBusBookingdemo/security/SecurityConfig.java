@@ -20,7 +20,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/index","/login","/register").permitAll()
+                        .requestMatchers("/index","/login","/register").permitAll()//User and Admin can view
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/search/**").hasRole("USER")
                         .anyRequest().authenticated());
