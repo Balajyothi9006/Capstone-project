@@ -18,12 +18,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+               .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/index","/login","/register").permitAll()//User and Admin can view
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/search/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET,"/","/login","/register","/index").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/login","/register").permitAll()
+                        .requestMatchers(HttpMethod.GET,"buses/admin/**","feedback/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"buses/admin/**","feedback/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/buses/search","/bus/{busId}/{userId}/select","/feedback/form/{userId}","/profile/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST,"/buses/search","/confirm-booking","user/update","change-password").hasRole("USER")
+
                         .anyRequest().authenticated());
+
 
 
         return http.build();
